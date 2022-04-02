@@ -12,6 +12,11 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
+    public boolean saveUser(final User user) {
+        userRepository.save(user);
+        return userRepository.existsById(user.getId());
+    }
+
     public List<User> getAllUserList() {
         return userRepository.findAll();
     }

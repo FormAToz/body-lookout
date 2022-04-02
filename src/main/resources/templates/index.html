@@ -9,33 +9,8 @@
 <body>
 <h1>Fitness makes you better!</h1>
 <br/>
-<h2>List of Users</h2>
-<br/>
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Email</th>
-        <th>Телефон</th>
-        <th>Роль</th>
-        <th>Дата регистрации</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${user_list}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.lastName}"></td>
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.middleName}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.phoneNumber}"></td>
-        <td th:text="${user.role}"></td>
-        <td th:text="${user.regDatePretty}"></td>
-    </tr>
-    </tbody>
-</table>
+<div th:with="usersAdd=${T(ru.projects.format.constant.UrlNames)}">
+    <a th:href="${usersAdd.USERS_ADD}">Список пользователей</a>
+</div>
 </body>
 </html>

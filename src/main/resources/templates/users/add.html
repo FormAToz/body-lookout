@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>Body Lookout - информация о пользователях</title>
+</head>
+<body>
+<h1>Fitness makes you better!</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>День рождения</th>
+        <th>Пол</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Роль</th>
+        <th>Дата регистрации</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${user_list}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.middleName}"></td>
+        <td th:text="${user.birthdayPretty}"></td>
+        <td th:text="${user.gender.description}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.role.description}"></td>
+        <td th:text="${user.regDatePretty}"></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<h2>Регистрация нового пользователя</h2>
+<div th:with="urlNames=${T(ru.projects.format.constant.UrlNames)}, genders=${T(ru.projects.format.model.enums.Gender)}">
+    <form th:action="${urlNames.USERS_ADD}" method="post" th:object="${user}">
+        <label>Фамилия:</label>
+        <input type="text" th:field="*{lastName}"/><br/>
+
+        <label>Имя:</label>
+        <input type="text" th:field="*{firstName}"/><br/>
+
+        <label>Отчество:</label>
+        <input type="text" th:field="*{middleName}"/><br/>
+
+        <label>День Рождения:</label>
+        <input type="date" th:field="*{birthday}"/><br/>
+
+        <label>Пол:</label>
+        <input type="radio" th:field="*{gender}" th:value="${genders.MALE.name}"/><span th:text="${genders.MALE.description}"/>
+        <input type="radio" th:field="*{gender}" th:value="${genders.FEMALE.name}"/><span th:text="${genders.FEMALE.description}"/><br/>
+
+        <label>E-mail:</label>
+        <input type="email" th:field="*{email}"/><br/>
+
+        <label>Пароль:</label>
+        <input type="password" th:field="*{password}"/><br/>
+        <br/>
+
+        <button type="submit">Подтвердить</button>
+    </form>
+</div>
+</body>
+</html>
