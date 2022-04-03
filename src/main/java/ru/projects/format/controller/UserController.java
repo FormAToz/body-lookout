@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.projects.format.model.User;
+import ru.projects.format.service.GenderService;
 import ru.projects.format.service.UserService;
 
 import static ru.projects.format.constant.UrlNames.USERS_ADD;
@@ -18,10 +19,13 @@ public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
+    private final GenderService genderService;
 
     @GetMapping(USERS_ADD)
     public String getAllUsers(final Model model) {
         log.info("getAllUsers(): model={}", model);
+        model.addAttribute("genders", genderService.geAllGenderList());
+        model.addAttribute("user", new User());
         model.addAttribute("user_list", userService.getAllUserList());
         model.addAttribute("user", new User());
         return "/users/add";

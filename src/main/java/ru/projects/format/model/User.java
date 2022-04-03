@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
-import ru.projects.format.model.enums.Gender;
 import ru.projects.format.model.enums.UserRole;
 
 import javax.persistence.Column;
@@ -16,6 +15,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -45,7 +46,8 @@ public class User {
     @DateTimeFormat(pattern = DATE_SHORT_DASH_PATTERN)
     private LocalDate birthday;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "gender", nullable = false)
     private Gender gender;
 
     private String email;
@@ -80,10 +82,11 @@ public class User {
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +
-                ", gender='" + gender + '\'' +
+                ", gender=" + gender +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
                 ", regDate=" + regDate +
                 '}';
     }

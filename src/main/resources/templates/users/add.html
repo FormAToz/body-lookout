@@ -40,7 +40,7 @@
 </table>
 <br/>
 <h2>Регистрация нового пользователя</h2>
-<div th:with="urlNames=${T(ru.projects.format.constant.UrlNames)}, genders=${T(ru.projects.format.model.enums.Gender)}">
+<div th:with="urlNames=${T(ru.projects.format.constant.UrlNames)}">
     <form th:action="${urlNames.USERS_ADD}" method="post" th:object="${user}">
         <label>Фамилия:</label>
         <input type="text" th:field="*{lastName}"/><br/>
@@ -55,8 +55,9 @@
         <input type="date" th:field="*{birthday}"/><br/>
 
         <label>Пол:</label>
-        <input type="radio" th:field="*{gender}" th:value="${genders.MALE.name}"/><span th:text="${genders.MALE.description}"/>
-        <input type="radio" th:field="*{gender}" th:value="${genders.FEMALE.name}"/><span th:text="${genders.FEMALE.description}"/><br/>
+        <th:block th:each="gender: ${genders}">
+            <input type="radio" th:field="*{gender}"  th:value="${gender.value}" th:text="${gender.description}"/>
+        </th:block><br/>
 
         <label>E-mail:</label>
         <input type="email" th:field="*{email}"/><br/>
