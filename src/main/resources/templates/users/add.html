@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${user_list}">
+    <tr th:each="user : ${user_list.userList}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.firstName}"></td>
@@ -55,7 +55,7 @@
         <input type="date" th:field="*{birthday}"/><br/>
 
         <label>Пол:</label>
-        <th:block th:each="gender: ${genders}">
+        <th:block th:each="gender: ${gender_list.genderList}">
             <input type="radio" th:field="*{gender}"  th:value="${gender.value}" th:text="${gender.description}"/>
         </th:block><br/>
 
@@ -68,6 +68,8 @@
 
         <button type="submit">Подтвердить</button>
     </form>
+    <br/>
+    <a th:href="${urlNames.ROOT}">На главную</a>
 </div>
 </body>
 </html>

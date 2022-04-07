@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.projects.format.model.User;
+import ru.projects.format.model.user.User;
 import ru.projects.format.service.GenderService;
 import ru.projects.format.service.UserService;
 
 import static ru.projects.format.constant.UrlNames.USERS_ADD;
+import static ru.projects.format.controller.ControllerHelper.addAttribute;
+import static ru.projects.format.controller.ControllerHelper.changeView;
+import static ru.projects.format.controller.ControllerHelper.redirectOnView;
 
 @RequiredArgsConstructor
 @Controller
@@ -24,17 +27,18 @@ public class UserController {
     @GetMapping(USERS_ADD)
     public String getAllUsers(final Model model) {
         log.info("getAllUsers(): model={}", model);
-        model.addAttribute("genders", genderService.geAllGenderList());
-        model.addAttribute("user", new User());
-        model.addAttribute("user_list", userService.getAllUserList());
-        model.addAttribute("user", new User());
-        return "/users/add";
+
+        addAttribute(model, genderService.getGenderList());
+        addAttribute(model, userService.getUserList());
+        addAttribute(model, new User());
+        return changeView(USERS_ADD);
     }
 
     @PostMapping(USERS_ADD)
     public String addNewUser(final User user) {
         log.info("addNewUser(): user={}", user);
+
         userService.saveUser(user);
-        return "redirect:/users/add";
+        return redirectOnView(USERS_ADD);
     }
 }

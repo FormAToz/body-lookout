@@ -1,11 +1,13 @@
-package ru.projects.format.model;
+package ru.projects.format.model.user;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.NonNull;
+import ru.projects.format.constant.AttributeName;
+import ru.projects.format.model.ModelAttribute;
 import ru.projects.format.model.enums.UserRole;
 
 import javax.persistence.Column;
@@ -29,7 +31,7 @@ import static ru.projects.format.util.DateTimeUtil.DATE_SHORT_DASH_PATTERN;
 @Setter
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements ModelAttribute {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -72,6 +74,12 @@ public class User {
     @NonNull
     public String getRegDatePretty() {
         return regDate != null ? regDate.format(DATE_LONG_TIME_SHORT) : StringUtils.EMPTY;
+    }
+
+    @Override
+    @NonNull
+    public String getAttributeName() {
+        return AttributeName.USER;
     }
 
     @Override

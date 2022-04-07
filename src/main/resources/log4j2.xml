@@ -5,34 +5,34 @@
         <Property name="LOG_ROOT_DIR">logs</Property>
     </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="${LOG_PATTERN}" />
+        <Console name="consoleLog" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
         <RollingFile name="appLog"
                      fileName="${LOG_ROOT_DIR}/appInfo.log"
                      filePattern="${LOG_ROOT_DIR}/appInfo-%d{yyyy-MM-dd}-%i.log">
-            <PatternLayout pattern="${LOG_PATTERN}" />
+            <PatternLayout pattern="${LOG_PATTERN}"/>
             <Filters>
                 <MarkerFilter marker="APP_INFO"/>
             </Filters>
             <Policies>
-                <SizeBasedTriggeringPolicy size="19500KB" />
+                <SizeBasedTriggeringPolicy size="19500KB"/>
             </Policies>
-            <DefaultRolloverStrategy max="1" />
+            <DefaultRolloverStrategy max="1"/>
         </RollingFile>
 
     </Appenders>
     <Loggers>
 
         <Logger name="appLogger" additivity="false">
-            <AppenderRef ref="appLog" level="info" />
+            <AppenderRef ref="appLog" level="info"/>
             <AppenderRef ref="Console" />
         </Logger>
 
         <Root level="info" additivity="false">
-            <AppenderRef ref="appLog" level="info" />
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="appLog" level="info"/>
+            <AppenderRef ref="consoleLog" level="info"/>
         </Root>
     </Loggers>
 </Configuration>

@@ -1,4 +1,4 @@
-package ru.projects.format.model;
+package ru.projects.format.model.user;
 
 import lombok.Getter;
 import lombok.Setter;
