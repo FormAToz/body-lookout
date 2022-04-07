@@ -27,12 +27,12 @@
 
         <Logger name="appLogger" additivity="false">
             <AppenderRef ref="appLog" level="info"/>
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="consoleLog"/>
         </Logger>
 
         <Root level="info" additivity="false">
             <AppenderRef ref="appLog" level="info"/>
-            <AppenderRef ref="consoleLog" level="info"/>
+            <AppenderRef ref="consoleLog"/>
         </Root>
     </Loggers>
 </Configuration>
