@@ -8,7 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.projects.format.model.note.Note;
-import ru.projects.format.service.UserNoteService;
+import ru.projects.format.model.user.User;
+import ru.projects.format.service.note.UserNoteService;
 import ru.projects.format.service.UserService;
 
 import static ru.projects.format.constant.UrlNames.NOTES_ALL;
@@ -28,10 +29,9 @@ public class UserNoteController {
     public String getAllUserNotes(final Model model) {
         log.info("getAllUserNotes(): model={}", model);
 
-        final long userId = 1L; // TODO брать из Auth, когда прикрутится Security
-
-        addAttribute(model, userService.getById(userId));
-        addAttribute(model, userNoteService.getNoteListByUserId(userId));
+        final User user = userService.getById(1L); // TODO брать из Auth, когда прикрутится Security
+        addAttribute(model, user);
+        addAttribute(model, userNoteService.getNoteListByUser(user));
         addAttribute(model, userNoteService.getNoteCategoryList());
         addAttribute(model, new Note());
         return changeView(NOTES_ALL);

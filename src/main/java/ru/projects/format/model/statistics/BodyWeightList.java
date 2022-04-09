@@ -1,4 +1,4 @@
-package ru.projects.format.model.user;
+package ru.projects.format.model.statistics;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -11,17 +11,17 @@ import ru.projects.format.model.ModelAttribute;
 import java.util.List;
 
 @ToString
-@Setter
 @AllArgsConstructor
-public class UserList implements ModelAttribute {
-    private List<User> userList;
+@Setter
+public class BodyWeightList implements ModelAttribute {
+    private List<BodyWeight> bodyWeightList;
 
-    public List<User> getUserList() {
-        return ListUtils.emptyIfNull(userList);
+    public List<BodyWeight> getBodyWeightList() {
+        return ListUtils.emptyIfNull(bodyWeightList);
     }
 
     @Override
     public @NonNull String getAttributeName() {
-        return AttributeName.USER_LIST;
+        return AttributeName.BODY_WEIGHT_LIST;
     }
 }

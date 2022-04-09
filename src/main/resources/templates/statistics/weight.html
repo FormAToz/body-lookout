@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>Body Lookout - статистика</title>
+</head>
+<body>
+<h2>Добавление нового замера</h2>
+<div th:with="urlNames=${T(ru.projects.format.constant.UrlNames)}">
+    <form th:action="${urlNames.STATISTICS_WEIGHT}" method="post" th:object="${body_weight}">
+        <input id="user" type="hidden" name="key.user" th:value="${user.id}"/><br/>
+
+        <label>Введите вес:</label>
+        <input type="number" min="0" step="0.01" th:field="*{weight}"/><br/>
+
+        <label>Дата взвешивания:</label>
+        <input type="date" th:field="*{key.date}" required/><br/>
+
+        <button type="submit">Добавить</button>
+    </form>
+    <br/>
+    <a th:href="${urlNames.ROOT}">На главную</a>
+</div>
+<br/>
+<h1>Список внесенных замеров веса тела</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ФИО пользователя</th>
+        <th>Дата</th>
+        <th>Вес</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bodyWeight : ${body_weight_list.bodyWeightList}">
+        <td th:text="|${bodyWeight.key.user.lastName} ${bodyWeight.key.user.firstName} ${bodyWeight.key.user.middleName}|"></td>
+        <td th:text="${bodyWeight.datePretty}"></td>
+        <td th:text="${bodyWeight.weight}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+</html>

@@ -32,7 +32,7 @@
 <h2>Добавление новой заметки</h2>
 <div th:with="urlNames=${T(ru.projects.format.constant.UrlNames)}">
     <form th:action="${urlNames.NOTES_ALL}" method="post" th:object="${note}">
-        <input type="hidden" name="user" th:value="${user.id}" id="user"/><br/>
+        <input id="user" type="hidden" name="user" th:value="${user.id}"/><br/>
 
         <label>Категория:</label>
         <select th:field="*{category}">
@@ -40,7 +40,7 @@
         </select><br/>
 
         <label>Текст:</label>
-        <textarea th:field="*{text}"></textarea><br/>
+        <textarea th:field="*{text}" required></textarea><br/>
 
         <button type="submit">Создать</button>
     </form>

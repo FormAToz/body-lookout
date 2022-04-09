@@ -1,12 +1,14 @@
-package ru.projects.format.service;
+package ru.projects.format.service.note;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.projects.format.model.note.Note;
 import ru.projects.format.model.note.NoteCategoryList;
 import ru.projects.format.model.note.NoteList;
+import ru.projects.format.model.user.User;
 import ru.projects.format.repository.note.NoteCategoryRepository;
 import ru.projects.format.repository.note.NoteRepository;
+import ru.projects.format.service.UserService;
 
 @RequiredArgsConstructor
 @Service
@@ -15,8 +17,8 @@ public class UserNoteService {
     private final NoteCategoryRepository noteCategoryRepository;
     private final UserService userService;
 
-    public NoteList getNoteListByUserId(final long userId) {
-        return new NoteList(noteRepository.findAllByUserId(userId));
+    public NoteList getNoteListByUser(final User user) {
+        return new NoteList(noteRepository.findAllByUser(user));
     }
 
     public NoteCategoryList getNoteCategoryList() {

@@ -1,10 +1,11 @@
 package ru.projects.format.model.note;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.lang.NonNull;
 import ru.projects.format.constant.AttributeName;
 import ru.projects.format.model.ModelAttribute;
 import ru.projects.format.model.user.User;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 
 import static ru.projects.format.util.DateTimeUtil.DATE_LONG_SPACED;
 
+@ToString
 @Setter
 @Getter
 @Entity
@@ -48,18 +50,7 @@ public class Note implements ModelAttribute {
     }
 
     @Override
-    public @lombok.NonNull String getAttributeName() {
+    public @NonNull String getAttributeName() {
         return AttributeName.NOTE;
-    }
-
-    @Override
-    public String toString() {
-        return "Note{" +
-                "id=" + id +
-                ", user=" + user +
-                ", category=" + category +
-                ", text='" + text + '\'' +
-                ", created=" + created +
-                '}';
     }
 }

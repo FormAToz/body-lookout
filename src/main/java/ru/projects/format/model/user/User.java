@@ -3,6 +3,7 @@ package ru.projects.format.model.user;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,6 +28,7 @@ import static ru.projects.format.util.DateTimeUtil.DATE_LONG_SPACED;
 import static ru.projects.format.util.DateTimeUtil.DATE_LONG_TIME_SHORT;
 import static ru.projects.format.util.DateTimeUtil.DATE_SHORT_DASH_PATTERN;
 
+@ToString
 @Getter
 @Setter
 @Entity
@@ -80,22 +82,5 @@ public class User implements ModelAttribute {
     @NonNull
     public String getAttributeName() {
         return AttributeName.USER;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", gender=" + gender +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                ", regDate=" + regDate +
-                '}';
     }
 }

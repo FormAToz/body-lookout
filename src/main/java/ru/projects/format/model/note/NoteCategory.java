@@ -2,11 +2,13 @@ package ru.projects.format.model.note;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@ToString
 @Setter
 @Getter
 @Entity
@@ -15,12 +17,4 @@ public class NoteCategory {
     @Id
     private long id;
     private String description;
-
-    @Override
-    public String toString() {
-        return "NoteCategory{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
