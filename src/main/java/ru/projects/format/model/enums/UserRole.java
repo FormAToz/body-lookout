@@ -2,7 +2,9 @@ package ru.projects.format.model.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @Getter
 @RequiredArgsConstructor
 public enum UserRole {
@@ -10,12 +12,4 @@ public enum UserRole {
     USER("Пользователь");
 
     private final String description;
-
-    @Override
-    public String toString() {
-        return "UserRole{" +
-                "name='" + name() + '\'' +
-                "description='" + description + '\'' +
-                '}';
-    }
 }

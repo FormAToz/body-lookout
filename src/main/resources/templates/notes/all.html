@@ -34,7 +34,7 @@
     <form th:action="${urlNames.NOTES_ALL}" method="post" th:object="${note}">
         <input id="user" type="hidden" name="user" th:value="${user.id}"/><br/>
 
-        <label>Категория:</label>
+        <label>Выберите категорию:</label>
         <select th:field="*{category}">
             <option th:each="category : ${note_category_list.noteCategoryList}" th:value="${category.id}" th:text="${category.description}"></option>
         </select><br/>

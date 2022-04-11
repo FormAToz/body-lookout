@@ -26,8 +26,8 @@ public class UserNoteController {
     private final UserNoteService userNoteService;
 
     @GetMapping(NOTES_ALL)
-    public String getAllUserNotes(final Model model) {
-        log.info("getAllUserNotes(): model={}", model);
+    public String openUserNotesPage(final Model model) {
+        log.info("openUserNotesPage(): model={}", model);
 
         final User user = userService.getById(1L); // TODO брать из Auth, когда прикрутится Security
         addAttribute(model, user);
@@ -39,7 +39,7 @@ public class UserNoteController {
 
     @PostMapping(NOTES_ALL)
     public String addNote(final Note note) {
-        log.info("getAllUserNotes(): note={}", note);
+        log.info("addNote(): note={}", note);
 
         userNoteService.addNote(note);
         return redirectOnView(NOTES_ALL);

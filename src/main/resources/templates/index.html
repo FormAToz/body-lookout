@@ -10,9 +10,10 @@
 <h1>Fitness makes you better!</h1>
 <br/>
 <div th:with="usersAdd=${T(ru.projects.format.constant.UrlNames)}">
-    <a th:href="${usersAdd.USERS_ADD}">Список пользователей</a><br/>
-    <a th:href="${usersAdd.NOTES_ALL}">Заметки</a><br/>
-    <a th:href="${usersAdd.STATISTICS}">Статистика</a>
+    <a th:href="${usersAdd.USERS_ADD}">Список пользователей</a><br/><br/>
+    <a th:href="${usersAdd.NOTES_ALL}">Заметки</a><br/><br/>
+    <a th:href="${usersAdd.STATISTICS_WEIGHT}">Статистика - вес тела</a><br/><br/>
+    <a th:href="${usersAdd.STATISTICS_BODY_SIZE}">Статистика - замеры тела</a>
 </div>
 </body>
 </html>

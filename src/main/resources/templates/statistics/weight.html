@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body><!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <title>Body Lookout - статистика</title>
+    <title>Body Lookout - статистика веса</title>
 </head>
 <body>
 <h2>Добавление нового замера</h2>
@@ -32,7 +24,7 @@
     <a th:href="${urlNames.ROOT}">На главную</a>
 </div>
 <br/>
-<h1>Список внесенных замеров веса тела</h1>
+<h1>Список замеров веса тела</h1>
 <table>
     <thead>
     <tr>
@@ -50,5 +42,4 @@
     </tbody>
 </table>
 </body>
-</html>
 </html>

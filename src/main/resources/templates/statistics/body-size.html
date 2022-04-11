@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>Body Lookout - статистика замеров тела</title>
+</head>
+<body>
+<h2>Добавление нового замера</h2>
+<div th:with="urlNames=${T(ru.projects.format.constant.UrlNames)}">
+    <form th:action="${urlNames.STATISTICS_BODY_SIZE}" method="post" th:object="${body_size}">
+        <input id="user" type="hidden" name="key.user" th:value="${user.id}"/><br/>
+
+        <label>Выберите часть тела:</label>
+        <select th:field="*{key.bodyPart}">
+            <option th:each="bodyPart : ${body_part_list.bodyPartList}" th:value="${bodyPart.id}" th:text="${bodyPart.description}"></option>
+        </select><br/>
+
+        <label>Введите размер(см):</label>
+        <input type="number" min="0" th:field="*{size}" required/><br/>
+
+        <label>Дата замера:</label>
+        <input type="date" th:field="*{key.created}" required/><br/>
+
+        <button type="submit">Добавить</button>
+    </form>
+    <br/>
+    <a th:href="${urlNames.ROOT}">На главную</a>
+</div>
+<br/>
+<h1>Список замеров тела</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ФИО пользователя</th>
+        <th>Часть тела</th>
+        <th>Размер(см)</th>
+        <th>Дата замера</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bodySize : ${body_size_list.bodySizeList}">
+        <td th:text="|${bodySize.key.user.lastName} ${bodySize.key.user.firstName} ${bodySize.key.user.middleName}|"></td>
+        <td th:text="${bodySize.key.bodyPart.description}"></td>
+        <td th:text="${bodySize.size}"></td>
+        <td th:text="${bodySize.createdPretty}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

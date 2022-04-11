@@ -12,7 +12,6 @@ import ru.projects.format.constant.AttributeName;
 import ru.projects.format.model.ModelAttribute;
 import ru.projects.format.model.user.User;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -29,38 +28,40 @@ import static ru.projects.format.util.DateTimeUtil.DATE_SHORT_DASH_PATTERN;
 @Getter
 @Setter
 @Entity
-@Table(name = "body_weights")
-public class BodyWeight implements ModelAttribute {
+@Table(name = "body_sizes")
+public class BodySize implements ModelAttribute {
     @EmbeddedId
-    private BodyWeightKey key;
+    private BodySizeKey key;
 
-    private float weight;
+    private int size;
 
-    @NonNull
-    public String getDatePretty() {
-        return key.date != null ? key.date.format(DATE_LONG_SPACED) : StringUtils.EMPTY;
+    public String getCreatedPretty() {
+        return key.created != null ? key.created.format(DATE_LONG_SPACED) : StringUtils.EMPTY;
     }
 
     @Override
     public @NonNull String getAttributeName() {
-        return AttributeName.BODY_WEIGHT;
+        return AttributeName.BODY_SIZE;
     }
 
+    @ToString
     @Getter
     @Setter
     @EqualsAndHashCode
-    @ToString
     @Embeddable
-    public static class BodyWeightKey implements Serializable {
+    public static class BodySizeKey implements Serializable {
         private static final long serialVersionUID = 1L;
 
         @ManyToOne
-        @JoinColumn(name = "user_id", nullable = false, insertable = false, updatable = false)
+        @JoinColumn(name = "user_id")
         private User user;
+
+        @ManyToOne
+        @JoinColumn(name = "body_part_id")
+        private BodyPart bodyPart;
 
         @DateTimeFormat(pattern = DATE_SHORT_DASH_PATTERN)
         @CreationTimestamp
-        @Column(nullable = false, insertable = false, updatable = false)
-        private LocalDate date;
+        private LocalDate created;
     }
 }

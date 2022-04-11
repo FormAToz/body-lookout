@@ -14,4 +14,7 @@ public class AttributeName {
     /* Статистика */
     public static final String BODY_WEIGHT ="body_weight";
     public static final String BODY_WEIGHT_LIST ="body_weight_list";
+    public static final String BODY_PART_LIST ="body_part_list";
+    public static final String BODY_SIZE ="body_size";
+    public static final String BODY_SIZE_LIST ="body_size_list";
 }

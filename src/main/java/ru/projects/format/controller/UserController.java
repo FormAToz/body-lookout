@@ -25,8 +25,8 @@ public class UserController {
     private final GenderService genderService;
 
     @GetMapping(USERS_ADD)
-    public String getAllUsers(final Model model) {
-        log.info("getAllUsers(): model={}", model);
+    public String openUsersPage(final Model model) {
+        log.info("openUsersPage(): model={}", model);
 
         addAttribute(model, genderService.getGenderList());
         addAttribute(model, userService.getUserList());

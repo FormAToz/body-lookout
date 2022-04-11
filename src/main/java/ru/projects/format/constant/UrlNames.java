@@ -14,4 +14,5 @@ public abstract class UrlNames {
     /* Статистика */
     public static final String STATISTICS = "/statistics";
     public static final String STATISTICS_WEIGHT = STATISTICS + "/weight";
+    public static final String STATISTICS_BODY_SIZE = STATISTICS + "/body-size";
 }
